@@ -18,8 +18,5 @@ public class SpawnCoin : MonoBehaviour
         }
     }
 
-    private void CreateCoin(Transform point)
-    {
-        Instantiate(_coin, point);
-    }
+    private void CreateCoin(Transform point) => Instantiate(_coin, point);
 }
