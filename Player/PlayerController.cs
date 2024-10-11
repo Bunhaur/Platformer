@@ -2,13 +2,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(MovementController))]
 [RequireComponent(typeof(JumpController))]
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(InputService))]
 
 public class PlayerController : MonoBehaviour
 {
+    private const string Horizontal = nameof(Horizontal);
+
     private MovementController _movementController;
     private JumpController _jumpController;
-    private SpriteRenderer _spriteRenderer;
+    private InputService _inputService;
 
     private float _horizontal;
 
@@ -16,23 +18,35 @@ public class PlayerController : MonoBehaviour
     {
         _movementController = GetComponent<MovementController>();
         _jumpController = GetComponent<JumpController>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _inputService = GetComponent<InputService>();
     }
 
     private void Update()
     {
-        HandleInput();
-        _jumpController.Jump();
-        _movementController.FlipSprite(_spriteRenderer, _horizontal);
+        Jump();
     }
 
     private void FixedUpdate()
     {
+        Move();
+        Flip();
+    }
+
+    private void Move()
+    {
+        _horizontal = _inputService.GetHorizontal();
         _movementController.Move(_horizontal);
     }
 
-    private void HandleInput()
+    private void Flip()
     {
-        _horizontal = Input.GetAxisRaw("Horizontal");
+        if (_horizontal != 0)
+            _movementController.FlipSprite(_horizontal);
+    }
+
+    private void Jump()
+    {
+        if (_inputService.IsPushJump() == true)
+            _jumpController.Jump();
     }
 }

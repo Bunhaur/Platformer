@@ -15,10 +15,7 @@ public class JumpController : MonoBehaviour
 
     public void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-        }
     }
 }

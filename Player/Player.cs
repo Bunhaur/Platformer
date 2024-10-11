@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     {
         if (collision.TryGetComponent(out Coin coin))
         {
+            _wallet.AddCoin(coin.Price);
             coin.Remove();
-            _wallet.AddCoin();
         }
     }
 }

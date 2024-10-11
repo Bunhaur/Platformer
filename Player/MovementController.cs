@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    private const float SpriteRotationY = 180f;
+
     [SerializeField] private float _speed = 5f;
 
     private Rigidbody2D _rigidbody;
@@ -21,9 +23,11 @@ public class MovementController : MonoBehaviour
         _rigidbody.velocity = _velocity;
     }
 
-    public void FlipSprite(SpriteRenderer spriteRenderer, float horizontal)
+    public void FlipSprite(float horizontal)
     {
-        if (horizontal != 0)
-            spriteRenderer.flipX = horizontal < 0;
+        if (horizontal < 0)
+            transform.rotation = Quaternion.Euler(0, SpriteRotationY, 0);
+        else if (horizontal > 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
