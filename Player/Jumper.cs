@@ -1,8 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-
-public class JumpController : MonoBehaviour
+public class Jumper : MonoBehaviour
 {
     [SerializeField] private float _jumpForce = 15f;
 

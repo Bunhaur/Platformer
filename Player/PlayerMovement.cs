@@ -1,8 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-
-public class MovementController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private const float SpriteRotationY = 180f;
 

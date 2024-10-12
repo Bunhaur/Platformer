@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private Vector3[] _way;
     [SerializeField] private float _speed;
